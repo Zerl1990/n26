@@ -7,6 +7,8 @@ SERVER_ERROR = 500
 
 NOT_FOUND = 404
 
+NOT_AUTH = 401
+
 INSERT_TRANSACTION_JSON_SCHEMA = {
 									"type": "object",
 									"required": ["type", "amount"],

@@ -25,8 +25,6 @@ class TransactionAPI(MethodView):
 			status_code = SERVER_OK
 		return make_response(jsonify(response), status_code)
 			
-			
-		
 	def put(self, transction_id):
 		db = SingletonDB()
 		post_content = request.get_json(force=True)
@@ -36,4 +34,4 @@ class TransactionAPI(MethodView):
 		VALUES ({transaction_id}, {parent_id}, '{type}', {amount})""".format(**post_content)
 		logger.debug(statement)
 		db.insert(statement)
-		return make_response("Transaction Added", SERVER_OK)
+		return make_response({"msg": "Transaction Added Successfully"}, SERVER_OK)

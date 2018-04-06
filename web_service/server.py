@@ -9,6 +9,7 @@ from flaskext.auth import Auth
 from flask import Flask, request, make_response, jsonify
 from time import strftime
 
+from models.common import SERVER_ERROR, NOT_FOUND
 from models.transaction import TransactionAPI
 from models.type import TypeAPI
 from models.sum import SumAPI
@@ -41,26 +42,23 @@ app.add_url_rule('/transactionservice/sum/<int:transaction_id>',
 def before_request():
 	auth = request.authorization
 	if auth["username"] != "admin" or auth["password"] != "Welcome123":
-		return make_response("Invalid User/Password", 401)
-					
-					
+		response = jsonify({"errror_msg": "Invalid User/Password"})
+		return make_response(response, NOT_AUTH)
+								
 # Misc function to handle special cases
 @app.after_request
 def after_request(response):
-  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-  response.headers.add('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
-  return response
+	response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+	response.headers.add('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
+	return response
 
 @app.errorhandler(Exception)
 def exceptions(e):
-    tb = traceback.format_exc()
-    logger.error('%s %s %s %s 5xx INTERNAL SERVER ERROR\n%s',
-                  request.remote_addr, 
-                  request.method,
-                  request.scheme, 
-                  request.full_path, 
-                  tb)
-    return "Internal Server Error", 500
+	tb = traceback.format_exc()
+	error_msg = "{0} {1} {2} {3} 5xx INTERNAL SERVER ERROR\n{4}".format(request.remote_addr, request.method,request.scheme, request.full_path, tb)
+	logger.error(error_msg)
+	response = jsonify({"errror_msg": error_msg})
+	return make_response(response, SERVER_ERROR)
  
 if __name__ == '__main__':
 	#PORT
