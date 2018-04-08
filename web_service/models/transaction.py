@@ -34,4 +34,4 @@ class TransactionAPI(MethodView):
 		VALUES ({transaction_id}, {parent_id}, '{type}', {amount})""".format(**post_content)
 		logger.debug(statement)
 		db.insert(statement)
-		return make_response({"msg": "Transaction Added Successfully"}, SERVER_OK)
+		return make_response(jsonify({"msg": "Transaction Added Successfully"}), SERVER_OK)

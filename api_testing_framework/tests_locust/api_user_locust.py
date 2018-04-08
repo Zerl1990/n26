@@ -3,11 +3,11 @@ import sys
 
 from locust import HttpLocust, TaskSet, task
 
-sys.path.append('..')
+sys.path.append('.')
 
-from models.transaction import TransactionAPI
-from models.type import TypeAPI
-from models.sum import SumAPI
+from library.n26_api_models.transaction import TransactionAPI
+from library.n26_api_models.type import TypeAPI
+from library.n26_api_models.sum import SumAPI
 
 class APIBehavior(TaskSet):
 	def on_start(self):

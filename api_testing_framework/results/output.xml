@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180407 23:50:18.049" generator="Robot 3.0.3 (Python 2.7.13 on win32)">
+<suite source="C:\Users\lmrivas\Documents\n26_challenge\api_testing_framework\tests_robot\regression.robot" id="s1" name="Regression">
+<test id="s1-t1" name="Try To Get Not Existing Transaction">
+<kw name="Get Transaction By Id" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.440" level="INFO">${status} = 404</msg>
+<msg timestamp="20180407 23:50:18.440" level="INFO">${response} = None</msg>
+<status status="PASS" endtime="20180407 23:50:18.440" starttime="20180407 23:50:18.425"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>404</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.440" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.440" starttime="20180407 23:50:18.440"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.440" critical="yes" starttime="20180407 23:50:18.425"></status>
+</test>
+<test id="s1-t2" name="Try To Get Transaction Using String">
+<kw name="Get Transaction By Id" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>"something"</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.456" level="FAIL">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</msg>
+<status status="FAIL" endtime="20180407 23:50:18.456" starttime="20180407 23:50:18.440"></status>
+</kw>
+<status status="FAIL" endtime="20180407 23:50:18.456" critical="yes" starttime="20180407 23:50:18.440">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</status>
+</test>
+<test id="s1-t3" name="Try To Get Transaction With Empty Transaction ID">
+<kw name="Get Transaction By Id" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>None</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.487" level="FAIL">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</msg>
+<status status="FAIL" endtime="20180407 23:50:18.487" starttime="20180407 23:50:18.471"></status>
+</kw>
+<status status="FAIL" endtime="20180407 23:50:18.487" critical="yes" starttime="20180407 23:50:18.471">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</status>
+</test>
+<test id="s1-t4" name="Get Transactions By Type With Integer">
+<kw name="Get Transactions By Type" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>1234</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.518" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.518" level="INFO">${response} = []</msg>
+<status status="PASS" endtime="20180407 23:50:18.518" starttime="20180407 23:50:18.503"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.518" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.518" starttime="20180407 23:50:18.518"></status>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.518" level="INFO">Length is 0</msg>
+<status status="PASS" endtime="20180407 23:50:18.518" starttime="20180407 23:50:18.518"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.518" critical="yes" starttime="20180407 23:50:18.503"></status>
+</test>
+<test id="s1-t5" name="Get Transactions By Type With Big String">
+<kw name="Get Transactions By Type" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>"String size greater than 255 character which is the max size for that column in the data base String size greater than 255 character which is the max size for that column in the data base String size greater than 255 character which is the max size for that column in the data base"</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.534" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.534" level="INFO">${response} = []</msg>
+<status status="PASS" endtime="20180407 23:50:18.534" starttime="20180407 23:50:18.518"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.534" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.534" starttime="20180407 23:50:18.534"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.534" critical="yes" starttime="20180407 23:50:18.518"></status>
+</test>
+<test id="s1-t6" name="Get Transactions By Type With Special Characters">
+<kw name="Get Transactions By Type" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>"5%$Q%$%$#@#@#^&amp;$"</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.550" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.550" level="INFO">${response} = []</msg>
+<status status="PASS" endtime="20180407 23:50:18.550" starttime="20180407 23:50:18.550"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.550" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.550" starttime="20180407 23:50:18.550"></status>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is empty.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.565" level="INFO">Length is 0</msg>
+<status status="PASS" endtime="20180407 23:50:18.565" starttime="20180407 23:50:18.565"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.565" critical="yes" starttime="20180407 23:50:18.550"></status>
+</test>
+<test id="s1-t7" name="Try To Get Transaction Sum Of Not Existing Transaction ID">
+<kw name="Get Transaction Sum" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.581" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.581" level="INFO">${response} = {u'sum': 0}</msg>
+<status status="PASS" endtime="20180407 23:50:18.581" starttime="20180407 23:50:18.581"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.581" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.581" starttime="20180407 23:50:18.581"></status>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<arguments>
+<arg>${response}</arg>
+<arg>sum</arg>
+</arguments>
+<status status="PASS" endtime="20180407 23:50:18.581" starttime="20180407 23:50:18.581"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response}</arg>
+<arg>sum</arg>
+</arguments>
+<assign>
+<var>${sum}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.581" level="INFO">${sum} = 0</msg>
+<status status="PASS" endtime="20180407 23:50:18.581" starttime="20180407 23:50:18.581"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${sum} == 0</arg>
+</arguments>
+<status status="PASS" endtime="20180407 23:50:18.581" starttime="20180407 23:50:18.581"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.581" critical="yes" starttime="20180407 23:50:18.565"></status>
+</test>
+<test id="s1-t8" name="Try To Get Transaction Sum Of Transaction ID With String">
+<kw name="Get Transaction Sum" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>"%$Q%$#@%#@%@#%#@%@%#@$"</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.612" level="FAIL">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</msg>
+<status status="FAIL" endtime="20180407 23:50:18.612" starttime="20180407 23:50:18.596"></status>
+</kw>
+<status status="FAIL" endtime="20180407 23:50:18.612" critical="yes" starttime="20180407 23:50:18.596">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</status>
+</test>
+<test id="s1-t9" name="Add New Transaction">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.643" level="INFO">${random} = [276041]</msg>
+<status status="PASS" endtime="20180407 23:50:18.643" starttime="20180407 23:50:18.628"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.643" level="INFO">${random} = 276041</msg>
+<status status="PASS" endtime="20180407 23:50:18.643" starttime="20180407 23:50:18.643"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>"TEST"</arg>
+<arg>${10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.675" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.675" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.675" starttime="20180407 23:50:18.643"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.675" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.675" starttime="20180407 23:50:18.675"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.675" critical="yes" starttime="20180407 23:50:18.628"></status>
+</test>
+<test id="s1-t10" name="Add New Transaction With Big Amount">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.690" level="INFO">${random} = [138203]</msg>
+<status status="PASS" endtime="20180407 23:50:18.690" starttime="20180407 23:50:18.675"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.690" level="INFO">${random} = 138203</msg>
+<status status="PASS" endtime="20180407 23:50:18.690" starttime="20180407 23:50:18.690"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>"TEST"</arg>
+<arg>${1000000000000000}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.706" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.706" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.706" starttime="20180407 23:50:18.690"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.706" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.706" starttime="20180407 23:50:18.706"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.706" critical="yes" starttime="20180407 23:50:18.675"></status>
+</test>
+<test id="s1-t11" name="Add New Transaction With Small Amount">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.737" level="INFO">${random} = [775755]</msg>
+<status status="PASS" endtime="20180407 23:50:18.737" starttime="20180407 23:50:18.721"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.737" level="INFO">${random} = 775755</msg>
+<status status="PASS" endtime="20180407 23:50:18.737" starttime="20180407 23:50:18.737"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>"TEST"</arg>
+<arg>${0}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.753" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.753" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.753" starttime="20180407 23:50:18.737"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.753" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.753" starttime="20180407 23:50:18.753"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.753" critical="yes" starttime="20180407 23:50:18.721"></status>
+</test>
+<test id="s1-t12" name="Add New Transaction With Negative Amount">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.768" level="INFO">${random} = [794894]</msg>
+<status status="PASS" endtime="20180407 23:50:18.768" starttime="20180407 23:50:18.768"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.784" level="INFO">${random} = 794894</msg>
+<status status="PASS" endtime="20180407 23:50:18.784" starttime="20180407 23:50:18.784"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>"TEST"</arg>
+<arg>${-10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.800" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.800" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.800" starttime="20180407 23:50:18.784"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.800" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.800" starttime="20180407 23:50:18.800"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.800" critical="yes" starttime="20180407 23:50:18.753"></status>
+</test>
+<test id="s1-t13" name="Add New Transaction With String Amount">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.815" level="INFO">${random} = [401327]</msg>
+<status status="PASS" endtime="20180407 23:50:18.815" starttime="20180407 23:50:18.800"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.815" level="INFO">${random} = 401327</msg>
+<status status="PASS" endtime="20180407 23:50:18.815" starttime="20180407 23:50:18.815"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>"TEST"</arg>
+<arg>"SFS#@$@"</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.831" level="INFO">${status} = 500</msg>
+<msg timestamp="20180407 23:50:18.831" level="INFO">${response} = {u'errror_msg': u'127.0.0.1 PUT http /transactionservice/transaction/401327? 5xx INTERNAL SERVER ERROR\nTraceback (most recent call last):\n  File "C:\\Python27\\lib\\site-packages\\flask\\app.py", li...</msg>
+<status status="PASS" endtime="20180407 23:50:18.831" starttime="20180407 23:50:18.815"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>500</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.831" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.831" starttime="20180407 23:50:18.831"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.831" critical="yes" starttime="20180407 23:50:18.800"></status>
+</test>
+<test id="s1-t14" name="Add New Transaction With String ID">
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>"%$#@%#$#@"</arg>
+<arg>"TEST"</arg>
+<arg>${10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.846" level="FAIL">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</msg>
+<status status="FAIL" endtime="20180407 23:50:18.846" starttime="20180407 23:50:18.846"></status>
+</kw>
+<status status="FAIL" endtime="20180407 23:50:18.846" critical="yes" starttime="20180407 23:50:18.831">JSONDecodeError: Expecting value: line 1 column 1 (char 0)</status>
+</test>
+<test id="s1-t15" name="Add New Transactions Of New Type">
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<assign>
+<var>${random_type}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.878" level="INFO">${random_type} = SsDiciil</msg>
+<status status="PASS" endtime="20180407 23:50:18.878" starttime="20180407 23:50:18.878"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.893" level="INFO">${random} = [321171]</msg>
+<status status="PASS" endtime="20180407 23:50:18.893" starttime="20180407 23:50:18.878"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.893" level="INFO">${random} = 321171</msg>
+<status status="PASS" endtime="20180407 23:50:18.893" starttime="20180407 23:50:18.893"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>${random_type}</arg>
+<arg>${10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.909" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.909" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.909" starttime="20180407 23:50:18.893"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.909" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.909" starttime="20180407 23:50:18.909"></status>
+</kw>
+<kw name="Get Transactions By Type" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random_type}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.909" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.909" level="INFO">${response} = [321171]</msg>
+<status status="PASS" endtime="20180407 23:50:18.909" starttime="20180407 23:50:18.909"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.925" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.925" starttime="20180407 23:50:18.925"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.925" level="INFO">Length is 1</msg>
+<status status="PASS" endtime="20180407 23:50:18.925" starttime="20180407 23:50:18.925"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:18.925" critical="yes" starttime="20180407 23:50:18.862"></status>
+</test>
+<test id="s1-t16" name="Add New Transactions Of New Type And Get Sum">
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<assign>
+<var>${random_type}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.925" level="INFO">${random_type} = leqAhcFP</msg>
+<status status="PASS" endtime="20180407 23:50:18.925" starttime="20180407 23:50:18.925"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.940" level="INFO">${random} = [636941]</msg>
+<status status="PASS" endtime="20180407 23:50:18.940" starttime="20180407 23:50:18.925"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.940" level="INFO">${random} = 636941</msg>
+<status status="PASS" endtime="20180407 23:50:18.940" starttime="20180407 23:50:18.940"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>${random_type}</arg>
+<arg>${10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.956" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:18.956" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:18.956" starttime="20180407 23:50:18.940"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:18.956" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:18.956" starttime="20180407 23:50:18.956"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.sample(range(1, 1000000), 1)</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.971" level="INFO">${random} = [740569]</msg>
+<status status="PASS" endtime="20180407 23:50:18.971" starttime="20180407 23:50:18.971"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${random}</arg>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${random}</var>
+</assign>
+<msg timestamp="20180407 23:50:18.971" level="INFO">${random} = 740569</msg>
+<status status="PASS" endtime="20180407 23:50:18.971" starttime="20180407 23:50:18.971"></status>
+</kw>
+<kw name="Add New Transaction" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random}</arg>
+<arg>${random_type}</arg>
+<arg>${10}</arg>
+<arg>${1}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:19.003" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:19.003" level="INFO">${response} = {u'msg': u'Transaction Added Successfully'}</msg>
+<status status="PASS" endtime="20180407 23:50:19.003" starttime="20180407 23:50:18.971"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:19.003" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:19.003" starttime="20180407 23:50:19.003"></status>
+</kw>
+<kw name="Get Transactions By Type" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>${random_type}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:19.003" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:19.003" level="INFO">${response} = [636941, 740569]</msg>
+<status status="PASS" endtime="20180407 23:50:19.003" starttime="20180407 23:50:19.003"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:19.003" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:19.003" starttime="20180407 23:50:19.003"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20180407 23:50:19.003" level="INFO">Length is 2</msg>
+<status status="PASS" endtime="20180407 23:50:19.003" starttime="20180407 23:50:19.003"></status>
+</kw>
+<kw name="Get Transaction Sum" library="library.n26_api_keywords.N26Library">
+<arguments>
+<arg>1</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+<var>${response}</var>
+</assign>
+<msg timestamp="20180407 23:50:19.018" level="INFO">${status} = 200</msg>
+<msg timestamp="20180407 23:50:19.018" level="INFO">${response} = {u'sum': 8000000000000327.0}</msg>
+<status status="PASS" endtime="20180407 23:50:19.018" starttime="20180407 23:50:19.003"></status>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20180407 23:50:19.018" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180407 23:50:19.018" starttime="20180407 23:50:19.018"></status>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<arguments>
+<arg>${response}</arg>
+<arg>sum</arg>
+</arguments>
+<status status="PASS" endtime="20180407 23:50:19.018" starttime="20180407 23:50:19.018"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${response}</arg>
+<arg>sum</arg>
+</arguments>
+<assign>
+<var>${sum}</var>
+</assign>
+<msg timestamp="20180407 23:50:19.018" level="INFO">${sum} = 8e+15</msg>
+<status status="PASS" endtime="20180407 23:50:19.018" starttime="20180407 23:50:19.018"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${sum} &gt; 0</arg>
+</arguments>
+<status status="PASS" endtime="20180407 23:50:19.018" starttime="20180407 23:50:19.018"></status>
+</kw>
+<status status="PASS" endtime="20180407 23:50:19.018" critical="yes" starttime="20180407 23:50:18.925"></status>
+</test>
+<status status="FAIL" endtime="20180407 23:50:19.034" starttime="20180407 23:50:18.049"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="4" pass="12">Critical Tests</stat>
+<stat fail="4" pass="12">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="4" id="s1" name="Regression" pass="12">Regression</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

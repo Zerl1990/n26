@@ -1,7 +1,7 @@
 import os
 import sys
 
-from models.base_test import BaseTest
+from library.n26_api_models.base_test import BaseTest
 
 class SumAPI(BaseTest):
 	def __init__(self, host, user_name=None, password=None):
